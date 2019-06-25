@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@mohayonao/web-audio-api-shim": "^0.3.0",
     "babel-core": "^6.26.3",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
