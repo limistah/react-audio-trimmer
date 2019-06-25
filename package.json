@@ -11,11 +11,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@mohayonao/web-audio-api-shim": "^0.3.0",
     "babel-core": "^6.26.3",
+    "css-loader": "^3.0.0",
+    "less-loader": "^5.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "style-loader": "^0.23.1",
+    "svg-sprite-loader": "^4.1.6",
     "webpack": "^4.35.0",
     "webpack-cli": "^3.3.5",
     "webpack-dev-server": "^3.7.2"

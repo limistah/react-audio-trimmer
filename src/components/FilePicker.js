@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
+import Icon from "./Icon";
 
 export default class FilePicker extends PureComponent {
   constructor() {
@@ -19,7 +20,10 @@ export default class FilePicker extends PureComponent {
   render() {
     return (
       <label className="react-audio-trimmer-file">
-        {this.props.children}
+        <div className="file-main">
+          <Icon name="music" />
+          选择音乐文件
+        </div>
         <input
           type="file"
           key={this.state.key}
