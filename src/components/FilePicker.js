@@ -28,6 +28,7 @@ export default class FilePicker extends PureComponent {
           type="file"
           key={this.state.key}
           ref="file"
+          accept="audio/*"
           onChange={this.handleChange}
         />
       </label>
