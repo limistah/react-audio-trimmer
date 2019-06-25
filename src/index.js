@@ -1,7 +1,8 @@
 import "@mohayonao/web-audio-api-shim";
+import React, { PureComponent } from "react";
 
-export default class ReactAudioTrimmer {
+export default class ReactAudioTrimmer extends PureComponent {
   render() {
-    return <div>Our Lovely Audio Trimmer</div>;
+    return <div>Our Awesome Audio Trimmer</div>;
   }
 }

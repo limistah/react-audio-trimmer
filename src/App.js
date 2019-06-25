@@ -1,4 +1,3 @@
-import "@mohayonao/web-audio-api-shim";
 import React, { PureComponent } from "react";
 import ReactDOM from "react-dom";
 import Lib from "./index.js";
@@ -14,3 +13,4 @@ class Main extends PureComponent {
 }
 
 ReactDOM.render(<Main />, document.getElementById("main"));
+module.hot.accept();
