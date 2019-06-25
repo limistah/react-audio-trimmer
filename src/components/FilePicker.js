@@ -19,10 +19,10 @@ export default class FilePicker extends PureComponent {
 
   render() {
     return (
-      <label className="react-audio-trimmer-file">
-        <div className="file-main">
+      <label className="rat-file-picker">
+        <div className="rat-file-picker-main">
           <Icon name="music" />
-          选择音乐文件
+          Select An Audio File
         </div>
         <input
           type="file"

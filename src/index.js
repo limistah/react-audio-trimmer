@@ -1,6 +1,6 @@
 import "@mohayonao/web-audio-api-shim";
 import React, { PureComponent } from "react";
-
+import "./assets/styles";
 import FilePicker from "./components/FilePicker";
 
 export default class ReactAudioTrimmer extends PureComponent {
