@@ -4,6 +4,7 @@ import "./assets/styles";
 import FilePicker from "./components/FilePicker";
 import { isAudio, readBlobURL, download, rename } from "./libs/utils";
 import WebAudio from "./libs/webAudio";
+import DecodingIndicator from "./components/DecodingIndicator";
 
 export default class ReactAudioTrimmer extends Component {
   constructor(props) {
@@ -51,7 +52,8 @@ export default class ReactAudioTrimmer extends Component {
   render() {
     return (
       <div className="react-audio-trimmer">
-        Our Awesome Audio Trimmer
+        <h2>Our Awesome Audio Trimmer</h2>
+        <DecodingIndicator />
         <FilePicker onChange={this.handleFileChange} />
       </div>
     );
