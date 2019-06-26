@@ -147,7 +147,8 @@ export default class ReactAudioTrimmer extends Component {
             ) : (
               <Player
                 audioBuffer={this.state.audioBuffer}
-                timeRange={60}
+                // timeRange={60}
+                timeLimit={60}
                 paused={this.state.paused}
                 startTime={this.state.startTime}
                 endTime={this.state.endTime}

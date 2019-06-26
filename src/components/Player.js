@@ -87,13 +87,30 @@ export default class Player extends PureComponent {
     this.props.onCurrentTimeChange(this.props.startTime || 0);
   };
 
+  withinTimeLimit = (time, isDragEnd = true) => {
+    const timeLimit = this.props.timeLimit;
+
+    let startTime = this.props.startTime;
+    let endTime = time;
+
+    if (!isDragEnd) {
+      startTime = time;
+      endTime = this.props.endTime;
+    }
+    const duration = this.props.audioBuffer.duration;
+    let timeTillEnd = duration - endTime;
+
+    const currentRange = duration - startTime - timeTillEnd;
+    return timeLimit ? currentRange <= timeLimit : true;
+  };
+
   withinTimeRange = (time, isDragEnd = true) => {
     const timeRange = this.props.timeRange;
     let interval = time - this.props.startTime;
     if (!isDragEnd) {
       interval = this.props.endTime - time;
     }
-    return interval >= timeRange;
+    return timeRange ? interval >= timeRange : true;
   };
 
   dragEnd = pos => {
@@ -104,8 +121,14 @@ export default class Player extends PureComponent {
     const endTime = this.props.endTime;
     const currentTime = this.props.currentTime;
 
-    const currentTimeIsWithingRange = this.withinTimeRange(time);
-    if (currentTime >= endTime || !currentTimeIsWithingRange) {
+    const currentTimeIsWithinLimit = this.withinTimeLimit(time);
+    const currentTimeIsWithinRange = this.withinTimeRange(time);
+
+    if (
+      currentTime >= endTime ||
+      !currentTimeIsWithinRange ||
+      !currentTimeIsWithinLimit
+    ) {
       time = endTime;
       this.audio.pause();
     }
@@ -133,10 +156,15 @@ export default class Player extends PureComponent {
     let time = pos2Time;
 
     const currentTime = this.props.currentTime;
-    const currentTimeIsWithingRange = this.withinTimeRange(time, false);
+    const currentTimeIsWithinRange = this.withinTimeRange(time, false);
+    const currentTimeIsWithinLimit = this.withinTimeLimit(time, false);
 
     // Restricts till the current time
-    if (time >= currentTime || !currentTimeIsWithingRange) {
+    if (
+      time >= currentTime ||
+      !currentTimeIsWithinRange ||
+      !currentTimeIsWithinLimit
+    ) {
       time = this.props.startTime;
       this.audio.pause();
     }
