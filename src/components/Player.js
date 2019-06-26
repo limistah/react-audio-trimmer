@@ -87,6 +87,15 @@ export default class Player extends PureComponent {
     this.props.onCurrentTimeChange(this.props.startTime || 0);
   };
 
+  withinTimeRange = (time, isDragEnd = true) => {
+    const timeRange = this.props.timeRange;
+    let interval = time - this.props.startTime;
+    if (!isDragEnd) {
+      interval = this.props.endTime - time;
+    }
+    return interval >= timeRange;
+  };
+
   dragEnd = pos => {
     const pos2Time = this.pos2Time(this.keepInRange(pos.x));
 
@@ -95,7 +104,8 @@ export default class Player extends PureComponent {
     const endTime = this.props.endTime;
     const currentTime = this.props.currentTime;
 
-    if (currentTime >= endTime) {
+    const currentTimeIsWithingRange = this.withinTimeRange(time);
+    if (currentTime >= endTime || !currentTimeIsWithingRange) {
       time = endTime;
       this.audio.pause();
     }
@@ -123,9 +133,10 @@ export default class Player extends PureComponent {
     let time = pos2Time;
 
     const currentTime = this.props.currentTime;
+    const currentTimeIsWithingRange = this.withinTimeRange(time, false);
 
     // Restricts till the current time
-    if (time >= currentTime) {
+    if (time >= currentTime || !currentTimeIsWithingRange) {
       time = this.props.startTime;
       this.audio.pause();
     }
