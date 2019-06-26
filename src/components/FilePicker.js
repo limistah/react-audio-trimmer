@@ -20,10 +20,16 @@ export default class FilePicker extends PureComponent {
   render() {
     return (
       <label className="rat-file-picker">
-        <div className="rat-file-picker-main">
-          <Icon name="music" />
-          Select An Audio File
-        </div>
+        {this.props.type === "control" ? (
+          <div className="rat-file-picker-ctrl" title="Pick A File">
+            <Icon name="music" />
+          </div>
+        ) : (
+          <div className="rat-file-picker-main">
+            <Icon name="music" />
+            Select An Audio File
+          </div>
+        )}
         <input
           type="file"
           key={this.state.key}

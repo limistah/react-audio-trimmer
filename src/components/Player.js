@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import Waver from "./Waver";
 import Dragger from "./Dragger";
-import WebAudio from "./webaudio";
+import WebAudio from "../libs/webAudio";
 import { formatSeconds, leftZero } from "../libs/utils";
 import Color from "color";
 
