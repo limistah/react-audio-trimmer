@@ -1,0 +1,104 @@
+.rat-controllers {
+  margin-top: 10px;
+}
+
+.rat-controllers .seconds {
+  font-size: 12px;
+  line-height: 36px;
+  margin-left: 10px;
+  display: inline-block;
+  overflow: hidden;
+  color: #aaa;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rat-icon-spin {
+  animation: spin infinite 1s linear;
+}
+
+.rat-controller-item,
+.rat-file-picker-control {
+  /* &:extend(.btn-reset); */
+  display: inline-block;
+  font-size: 16px;
+  text-align: center;
+  color: #999;
+  padding: 10px;
+  margin-right: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.rat-controller-item:hover,
+.rat-file-picker-control:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.16);
+}
+
+.rat-controller-item .rat-icon,
+.rat-file-picker-control .rat-icon {
+  display: block;
+}
+
+.rat-controller-item:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.16);
+}
+
+.rat-controller-dropdown {
+  display: inline-block;
+  position: relative;
+}
+.rat-controller-dropdown .rat-controller-list-wrap {
+  position: relative;
+}
+
+.rat-controller-dropdown .rat-controller-list {
+  position: absolute;
+  width: 60px;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition-duration: 0.3s;
+  transition-property: opacity, visibility;
+  list-style: none;
+  background: #fff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  padding: 0;
+  margin: 0;
+  z-index: 10;
+}
+
+.rat-controller-dropdown .rat-controller-list a {
+  /* btn reset extend */
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 5px 0;
+  color: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.rat-controller-dropdown .rat-controller-list a:hover {
+  background: #333;
+  color: #fff;
+}
+.rat-controller-dropdown:hover .rat-controller-list {
+  opacity: 1;
+  visibility: visible;
+}
+
+.rat-controller-clipper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}

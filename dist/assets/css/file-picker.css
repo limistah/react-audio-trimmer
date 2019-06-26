@@ -1,0 +1,26 @@
+.rat-file-picker input {
+  visibility: hidden;
+  position: absolute;
+}
+
+.rat-file-picker-main {
+  display: block;
+  margin: 0 auto;
+  padding: 40px;
+  text-align: center;
+  cursor: pointer;
+  color: #999;
+  transition: 0.3s;
+  background: none;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.rat-file-picker-main .icon {
+  margin: -1px 5px 0;
+  font-size: 24px;
+}
+
+.rat-file-picker-main:hover {
+  color: #6ac;
+  border-color: #6ac;
+}

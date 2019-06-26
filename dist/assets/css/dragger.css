@@ -1,0 +1,23 @@
+.rat-dragger {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: #999;
+  cursor: col-resize;
+}
+
+.rat-dragger::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  top: 0;
+  bottom: 0;
+}
+.rat-dragger:hover {
+  background: #333;
+}
+.rat-drag-current {
+  background: #0cf;
+}
