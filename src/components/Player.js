@@ -263,6 +263,8 @@ export default class Player extends PureComponent {
     startTime: PropTypes.number,
     endTime: PropTypes.number,
     currentTime: PropTypes.number,
+    timeLimit: PropTypes.number,
+    timeRange: PropTypes.number,
 
     onStartTimeChange: PropTypes.func,
     onEndTimeChange: PropTypes.func,

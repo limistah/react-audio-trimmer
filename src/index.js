@@ -9,6 +9,7 @@ import Player from "./components/Player";
 import Icon from "./components/Icon";
 import MetaSecondsInfo from "./components/MetaSecondsInfo";
 import Controllers from "./components/Controllers";
+import PropTypes from "prop-types";
 
 export default class ReactAudioTrimmer extends Component {
   constructor(props) {
@@ -25,6 +26,18 @@ export default class ReactAudioTrimmer extends Component {
       processing: false
     };
   }
+
+  static propTypes = {
+    timeLimit: PropTypes.number,
+    timeRange: PropTypes.number
+  };
+
+  static defaultProps = {
+    timeLimit: 0,
+    timeRange: 0
+  };
+
+  defaultProps;
 
   handleFileChange = async file => {
     console.log(file);
@@ -147,8 +160,8 @@ export default class ReactAudioTrimmer extends Component {
             ) : (
               <Player
                 audioBuffer={this.state.audioBuffer}
-                // timeRange={60}
-                timeLimit={60}
+                timeRange={this.props.timeRange}
+                timeLimit={this.props.timeLimit}
                 paused={this.state.paused}
                 startTime={this.state.startTime}
                 endTime={this.state.endTime}
