@@ -21,7 +21,7 @@ export default class FilePicker extends PureComponent {
     return (
       <label className="rat-file-picker">
         {this.props.type === "control" ? (
-          <div className="rat-file-picker-ctrl" title="Pick A File">
+          <div className="rat-file-picker-control" title="Pick A File">
             <Icon name="music" />
           </div>
         ) : (

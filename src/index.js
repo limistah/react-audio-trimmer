@@ -8,6 +8,7 @@ import DecodingIndicator from "./components/DecodingIndicator";
 import Player from "./components/Player";
 import Icon from "./components/Icon";
 import MetaSecondsInfo from "./components/MetaSecondsInfo";
+import Controllers from "./components/Controllers";
 
 export default class ReactAudioTrimmer extends Component {
   constructor(props) {
@@ -157,55 +158,25 @@ export default class ReactAudioTrimmer extends Component {
               />
             )}
 
-            <div className="controllers">
-              <FilePicker onChange={this.handleFileChange} type="control" />
-              <a
-                className="ctrl-item"
-                title="播放/暂停"
-                onClick={this.handlePlayPauseClick}
-              >
-                <Icon name={this.state.paused ? "play" : "pause"} />
-              </a>
+            <Controllers
+              onFileChange={this.handleFileChange}
+              onPauseClick={this.handlePlayPauseClick}
+              paused={state.paused}
+              onReplayClick={this.handleReplayClick}
+              processing={state.processing}
+              onEncode={this.handleEncode}
+            />
 
-              <a
-                className="ctrl-item"
-                title="回放"
-                onClick={this.handleReplayClick}
-              >
-                <Icon name="replay" />
-              </a>
-
-              <div className="dropdown list-wrap">
-                <a className="ctrl-item">
-                  <Icon name={this.state.processing ? "spin" : "download"} />
-                </a>
-                {!this.state.processing && (
-                  <ul className="list">
-                    <li>
-                      <a onClick={this.handleEncode} data-type="wav">
-                        Wav
-                      </a>
-                    </li>
-                    <li>
-                      <a onClick={this.handleEncode} data-type="mp3">
-                        MP3
-                      </a>
-                    </li>
-                  </ul>
+            {isFinite(this.state.endTime) && (
+              <MetaSecondsInfo
+                secondsRange={this.displaySeconds(
+                  state.endTime - state.startTime
                 )}
-              </div>
-
-              {isFinite(this.state.endTime) && (
-                <MetaSecondsInfo
-                  secondsRange={this.displaySeconds(
-                    state.endTime - state.startTime
-                  )}
-                  duration={this.displaySeconds(state.audioBuffer.duration)}
-                  startTime={this.displaySeconds(state.startTime)}
-                  endTime={this.displaySeconds(state.endTime)}
-                />
-              )}
-            </div>
+                duration={this.displaySeconds(state.audioBuffer.duration)}
+                startTime={this.displaySeconds(state.startTime)}
+                endTime={this.displaySeconds(state.endTime)}
+              />
+            )}
           </React.Fragment>
         ) : (
           <div className="landing">

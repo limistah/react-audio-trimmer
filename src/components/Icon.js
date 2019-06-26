@@ -9,7 +9,7 @@ require
   });
 
 const Icon = props => (
-  <svg className={`icon icon-${props.name}`}>
+  <svg className={`rat-icon rat-icon-${props.name}`}>
     <use xlinkHref={`#icon-${props.name}`} />
   </svg>
 );
