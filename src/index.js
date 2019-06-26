@@ -55,9 +55,8 @@ export default class ReactAudioTrimmer extends Component {
       currentTime: 0
     });
 
+    const audioBuffer = await WebAudio.decode(file);
     setTimeout(async () => {
-      const audioBuffer = await WebAudio.decode(file);
-
       window.audioBuffer = audioBuffer;
       this.setState({
         paused: false,
@@ -65,7 +64,10 @@ export default class ReactAudioTrimmer extends Component {
         audioBuffer,
         startTime: 0,
         currentTime: 0,
-        endTime: audioBuffer.duration / 2
+        endTime:
+          this.props.timeLimit ||
+          this.props.timeRange ||
+          audioBuffer.duration / 2
       });
     }, 300);
   };

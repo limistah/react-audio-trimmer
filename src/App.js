@@ -13,6 +13,7 @@ class Main extends PureComponent {
     return (
       <div className="page-container">
         <Lib
+          timeLimit={50}
           onAudioEncode={this.handleAudioEncode}
           ref={el => (this.encoder = el)}
         />
