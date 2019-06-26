@@ -31,15 +31,15 @@ export default class ReactAudioTrimmer extends Component {
 
   static propTypes = {
     timeLimit: PropTypes.number,
-    timeRange: PropTypes.number
+    timeRange: PropTypes.number,
+    onAudioEncode: () => {}
   };
 
   static defaultProps = {
     timeLimit: 0,
-    timeRange: 0
+    timeRange: 0,
+    onAudioEncode: () => {}
   };
-
-  defaultProps;
 
   handleFileChange = async file => {
     if (!isAudio(file)) {
