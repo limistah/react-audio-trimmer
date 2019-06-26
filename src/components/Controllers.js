@@ -26,10 +26,10 @@ export default function({
       </a>
 
       <div className="rat-controller-dropdown rat-controller-list-wrap">
-        <a className="rat-controller-item">
+        <a className="rat-controller-item" onClick={onEncode} data-type="wav">
           <Icon name={processing ? "spin" : "download"} />
         </a>
-        {!processing && (
+        {/* {!processing && (
           <ul className="rat-controller-list">
             <li>
               <a onClick={onEncode} data-type="wav">
@@ -42,7 +42,7 @@ export default function({
               </a>
             </li>
           </ul>
-        )}
+        )} */}
       </div>
     </div>
   );

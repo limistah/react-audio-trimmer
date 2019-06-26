@@ -3,10 +3,13 @@ import ReactDOM from "react-dom";
 import Lib from "./index.js";
 
 class Main extends PureComponent {
+  handleAudioEncode = file => {
+    console.log(file);
+  };
   render() {
     return (
       <div className="page-container">
-        <Lib />
+        <Lib onAudioEncode={this.handleAudioEncode} />
       </div>
     );
   }

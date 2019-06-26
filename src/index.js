@@ -118,6 +118,7 @@ export default class ReactAudioTrimmer extends Component {
 
   handleEncode = e => {
     const type = e.currentTarget.dataset.type;
+    // const type = "wav"
     const { startTime, endTime, audioBuffer } = this.state;
     const { length, duration } = audioBuffer;
 
@@ -132,9 +133,21 @@ export default class ReactAudioTrimmer extends Component {
     });
 
     encode(audioSliced, type)
-      .then(readBlobURL)
-      .then(url => {
-        download(url, rename(this.state.file.name, type));
+      .then(file => {
+        file.name = this.state.file.name;
+        file.lastModified = this.state.file.lastModified;
+        file.lastModifiedDate = this.state.file.lastModifiedDate;
+        return { file, blobURL: readBlobURL(file) };
+      })
+      .then(({ blobURL, file }) => {
+        const onAudioEncode = this.props.onAudioEncode;
+        if (!onAudioEncode && this.props.download) {
+          download(blobURL, rename(this.state.file.name, type));
+        } else if (onAudioEncode && typeof onAudioEncode === "function") {
+          onAudioEncode(file);
+        } else {
+          console.log("Audio Encoded", blobURL);
+        }
       })
       .catch(e => console.error(e))
       .then(() => {
