@@ -88,15 +88,48 @@ export default class Player extends PureComponent {
   };
 
   dragEnd = pos => {
-    this.props.onEndTimeChange(this.pos2Time(this.keepInRange(pos.x)));
+    const pos2Time = this.pos2Time(this.keepInRange(pos.x));
+
+    let time = pos2Time;
+
+    const endTime = this.props.endTime;
+    const currentTime = this.props.currentTime;
+
+    if (currentTime >= endTime) {
+      time = endTime;
+      this.audio.pause();
+    }
+    this.props.onEndTimeChange(time);
   };
 
   dragCurrent = pos => {
-    this.props.onCurrentTimeChange(this.pos2Time(this.keepInRange(pos.x)));
+    const pos2Time = this.pos2Time(this.keepInRange(pos.x));
+    let time = pos2Time;
+
+    const endTime = this.props.endTime;
+    const startTime = this.props.startTime;
+    const currentTime = this.props.currentTime;
+
+    // Must not be greater to the ending
+    if (time >= endTime || time <= startTime) {
+      time = currentTime;
+      this.audio.pause();
+    }
+    this.props.onCurrentTimeChange(time);
   };
 
   dragStart = pos => {
-    this.props.onStartTimeChange(this.pos2Time(this.keepInRange(pos.x)));
+    const pos2Time = this.pos2Time(this.keepInRange(pos.x));
+    let time = pos2Time;
+
+    const currentTime = this.props.currentTime;
+
+    // Restricts till the current time
+    if (time >= currentTime) {
+      time = this.props.startTime;
+      this.audio.pause();
+    }
+    this.props.onStartTimeChange(time);
   };
 
   pos2Time(pos) {
@@ -135,10 +168,10 @@ export default class Player extends PureComponent {
     const formated = formatSeconds(this.props.currentTime);
 
     return (
-      <div className="cursor-current">
-        <span className="num">{formated[0]}</span>'
-        <span className="num">{formated[1]}</span>.
-        <span className="num">{leftZero(formated[2], 2)}</span>
+      <div className="rat-player-cursor-current">
+        <span className="rat-player-num">{formated[0]}</span>'
+        <span className="rat-player-num">{formated[1]}</span>.
+        <span className="rat-player-num">{leftZero(formated[2], 2)}</span>
       </div>
     );
   }
@@ -149,8 +182,8 @@ export default class Player extends PureComponent {
     const current = this.time2pos(this.props.currentTime);
 
     return (
-      <div className="player">
-        <div className="clipper">
+      <div className="rat-player">
+        <div className="rat-player-clipper">
           <Waver
             audioBuffer={this.props.audioBuffer}
             width={containerWidth}
@@ -159,7 +192,10 @@ export default class Player extends PureComponent {
             color2={gray2}
           />
         </div>
-        <div className="clipper" style={{ clip: getClipRect(start, end) }}>
+        <div
+          className="rat-player-clipper"
+          style={{ clip: getClipRect(start, end) }}
+        >
           <Waver
             audioBuffer={this.props.audioBuffer}
             width={containerWidth}
@@ -169,7 +205,11 @@ export default class Player extends PureComponent {
           />
         </div>
         <Dragger x={start} onDrag={this.dragStart} />
-        <Dragger className="drag-current" x={current} onDrag={this.dragCurrent}>
+        <Dragger
+          className="rat-player-drag-current"
+          x={current}
+          onDrag={this.dragCurrent}
+        >
           {this.renderTimestamp()}
         </Dragger>
         <Dragger x={end} onDrag={this.dragEnd} />

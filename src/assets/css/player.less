@@ -1,0 +1,66 @@
+.rat-player-clipper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.rat-player-cursor-current {
+  @cursorColor: #0cf;
+
+  position: absolute;
+  font-size: 12px;
+  top: -22px;
+  padding: 1px 3px;
+  text-align: center;
+  color: #fff;
+  transform: translate(-50%) scale(0.8);
+  background: @cursorColor;
+
+  .rat-player-num {
+    font-family: monospace;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    border: 5px solid transparent;
+    border-top-color: #0cf;
+    bottom: -9px;
+    left: 50%;
+    margin-left: -5px;
+  }
+}
+
+.rat-player {
+  position: relative;
+  margin: 0 auto;
+  height: 160px;
+  display: block;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+
+  .rat-wave-canvas {
+    position: absolute;
+  }
+}
+
+.rat-player-landing {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #ddd;
+  font-size: 24px;
+}
+
+.rat-landing {
+  padding-bottom: 100px;
+
+  h2 {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    color: #ccc;
+    font-size: 40px;
+    margin-bottom: 40px;
+  }
+}

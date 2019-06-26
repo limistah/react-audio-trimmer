@@ -33,7 +33,7 @@ export default class Dragger extends PureComponent {
   render() {
     return (
       <div
-        className={classnames("dragger", this.props.className)}
+        className={classnames("rat-dragger", this.props.className)}
         onMouseDown={this.handleMouseDown}
         style={{
           left: this.props.x + "px",
