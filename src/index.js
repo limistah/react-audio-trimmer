@@ -7,6 +7,7 @@ import WebAudio from "./libs/webAudio";
 import DecodingIndicator from "./components/DecodingIndicator";
 import Player from "./components/Player";
 import Icon from "./components/Icon";
+import MetaSecondsInfo from "./components/MetaSecondsInfo";
 
 export default class ReactAudioTrimmer extends Component {
   constructor(props) {
@@ -195,25 +196,14 @@ export default class ReactAudioTrimmer extends Component {
               </div>
 
               {isFinite(this.state.endTime) && (
-                <span className="seconds">
-                  Select{" "}
-                  <span className="seconds-range">
-                    {this.displaySeconds(state.endTime - state.startTime)}
-                  </span>{" "}
-                  of{" "}
-                  <span className="seconds-total">
-                    {this.displaySeconds(state.audioBuffer.duration)}
-                  </span>{" "}
-                  (from{" "}
-                  <span className="seconds-start">
-                    {this.displaySeconds(state.startTime)}
-                  </span>{" "}
-                  to{" "}
-                  <span className="seconds-end">
-                    {this.displaySeconds(state.endTime)}
-                  </span>
-                  )
-                </span>
+                <MetaSecondsInfo
+                  secondsRange={this.displaySeconds(
+                    state.endTime - state.startTime
+                  )}
+                  duration={this.displaySeconds(state.audioBuffer.duration)}
+                  startTime={this.displaySeconds(state.startTime)}
+                  endTime={this.displaySeconds(state.endTime)}
+                />
               )}
             </div>
           </React.Fragment>
