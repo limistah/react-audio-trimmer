@@ -5,15 +5,23 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --open",
+    "transpile": "babel src -d dist --copy-files",
+    "prepublishOnly": "npm run transpile",
+    "build": "webpack --mode production",
+    "deploy": "gh-pages -d examples/dist",
+    "publish-demo": "npm run build && npm run deploy"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "peerDependencies": {
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0"
+  },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@mohayonao/web-audio-api-shim": "^0.3.0",
-    "babel-core": "^6.26.3",
     "classnames": "^2.2.6",
     "color": "^3.1.2",
     "css-loader": "^3.0.0",
@@ -21,8 +29,6 @@
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
     "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
     "style-loader": "^0.23.1",
     "svg-sprite-loader": "^4.1.6",
     "webpack": "^4.35.0",
@@ -30,6 +36,7 @@
     "webpack-dev-server": "^3.7.2"
   },
   "devDependencies": {
+    "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
     "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
@@ -37,6 +44,8 @@
     "@babel/runtime": "^7.4.5",
     "babel-loader": "^8.0.6",
     "babel-polyfill": "^6.26.0",
+    "gh-pages": "^2.0.1",
+    "html-webpack-plugin": "^3.2.0",
     "react-hot-loader": "^4.11.1"
   }
 }

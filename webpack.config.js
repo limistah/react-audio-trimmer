@@ -2,17 +2,17 @@ const webpack = require("webpack");
 const path = require("path");
 
 module.exports = {
-  entry: "./src/App.js",
+  entry: "./example/App.js",
   resolve: {
     extensions: ["*", ".js", ".jsx"]
   },
   output: {
-    path: __dirname + "/dist",
+    path: __dirname + "/example",
     publicPath: "/",
     filename: "bundle.js"
   },
   devServer: {
-    contentBase: "./dist"
+    contentBase: "./example"
   },
   plugins: [new webpack.HotModuleReplacementPlugin()],
   module: {
