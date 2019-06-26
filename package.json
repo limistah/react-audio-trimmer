@@ -1,8 +1,8 @@
 {
   "name": "react-audio-trimmer",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "React component for trimming audio files",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --open",
