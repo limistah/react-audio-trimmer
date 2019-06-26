@@ -117,8 +117,12 @@ export default class ReactAudioTrimmer extends Component {
   }
 
   handleEncode = e => {
-    const type = e.currentTarget.dataset.type;
+    const type = e && e.currentTarget ? e.currentTarget.dataset.type : "wav";
     // const type = "wav"
+    this.encodeAudio(type);
+  };
+
+  encodeAudio = (type = "wav") => {
     const { startTime, endTime, audioBuffer } = this.state;
     const { length, duration } = audioBuffer;
 
@@ -195,6 +199,7 @@ export default class ReactAudioTrimmer extends Component {
               onReplayClick={this.handleReplayClick}
               processing={state.processing}
               onEncode={this.handleEncode}
+              showEncodeBtn={this.props.showEncodeBtn}
             />
 
             {isFinite(this.state.endTime) && (

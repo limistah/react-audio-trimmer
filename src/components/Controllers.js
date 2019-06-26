@@ -8,7 +8,8 @@ export default function({
   paused,
   onReplayClick,
   processing,
-  onEncode
+  onEncode,
+  showEncodeBtn
 }) {
   return (
     <div className="rat-controllers">
@@ -24,12 +25,12 @@ export default function({
       <a className="rat-controller-item" title="回放" onClick={onReplayClick}>
         <Icon name="replay" />
       </a>
-
-      <div className="rat-controller-dropdown rat-controller-list-wrap">
-        <a className="rat-controller-item" onClick={onEncode} data-type="wav">
-          <Icon name={processing ? "spin" : "download"} />
-        </a>
-        {/* {!processing && (
+      {!showEncodeBtn && (
+        <div className="rat-controller-dropdown rat-controller-list-wrap">
+          <a className="rat-controller-item" onClick={onEncode} data-type="wav">
+            <Icon name={processing ? "spin" : "download"} />
+          </a>
+          {/* {!processing && (
           <ul className="rat-controller-list">
             <li>
               <a onClick={onEncode} data-type="wav">
@@ -43,7 +44,8 @@ export default function({
             </li>
           </ul>
         )} */}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
