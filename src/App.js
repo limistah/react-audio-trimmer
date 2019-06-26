@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import ReactDOM from "react-dom";
-import Lib from "../src/index.js";
+import Lib from "./index.js";
 
 class Main extends PureComponent {
   handleAudioEncode = file => {

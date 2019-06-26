@@ -5,20 +5,17 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --open",
+    "start": "webpack-dev-server --open --config ./webpack.config.dev.js",
     "transpile": "babel src -d dist --copy-files",
     "prepublishOnly": "npm run transpile",
-    "build": "webpack --mode production",
+    "build": "webpack --config ./webpack.config.prod.js",
     "deploy": "gh-pages -d examples/dist",
     "publish-demo": "npm run build && npm run deploy"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "peerDependencies": {
-    "react": "^16.3.0",
-    "react-dom": "^16.3.0"
-  },
+  "peerDependencies": {},
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@mohayonao/web-audio-api-shim": "^0.3.0",
@@ -29,6 +26,8 @@
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
     "prop-types": "^15.7.2",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
     "style-loader": "^0.23.1",
     "svg-sprite-loader": "^4.1.6",
     "webpack": "^4.35.0",
@@ -44,6 +43,7 @@
     "@babel/runtime": "^7.4.5",
     "babel-loader": "^8.0.6",
     "babel-polyfill": "^6.26.0",
+    "clean-webpack-plugin": "^3.0.0",
     "gh-pages": "^2.0.1",
     "html-webpack-plugin": "^3.2.0",
     "react-hot-loader": "^4.11.1"

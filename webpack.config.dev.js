@@ -1,8 +1,11 @@
 const webpack = require("webpack");
 const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: "./example/App.js",
+  mode: "development",
+  devtool: "eval-source-map",
+  entry: "./src/App.js",
   resolve: {
     extensions: ["*", ".js", ".jsx"]
   },
@@ -14,7 +17,13 @@ module.exports = {
   devServer: {
     contentBase: "./example"
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      title: "Hello Webpack bundled JavaScript Project",
+      template: "./src/index.html"
+    })
+  ],
   module: {
     rules: [
       {
