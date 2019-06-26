@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import "./assets/styles";
 import FilePicker from "./components/FilePicker";
 import { isAudio, readBlobURL, download, rename } from "./libs/utils";
+import { sliceAudioBuffer } from "./libs/audioHelper";
 import WebAudio from "./libs/webAudio";
 import DecodingIndicator from "./components/DecodingIndicator";
 import Player from "./components/Player";
@@ -10,6 +11,7 @@ import Icon from "./components/Icon";
 import MetaSecondsInfo from "./components/MetaSecondsInfo";
 import Controllers from "./components/Controllers";
 import PropTypes from "prop-types";
+import { encode } from "./libs/workerClient";
 
 export default class ReactAudioTrimmer extends Component {
   constructor(props) {
