@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --open --config ./webpack.config.dev.js",
-    "prepublishOnly": "npm run build",
+    "transpile": "babel src -d dist --copy-files",
+    "prepublishOnly": "npm run transpile",
     "build": "webpack --config ./webpack.config.prod.js",
     "deploy": "gh-pages -d examples/dist",
     "publish-demo": "npm run build && npm run deploy"
