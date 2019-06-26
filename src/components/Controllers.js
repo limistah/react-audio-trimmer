@@ -14,15 +14,11 @@ export default function({
   return (
     <div className="rat-controllers">
       <FilePicker onChange={onFileChange} type="control" />
-      <a
-        className="rat-controller-item"
-        title="播放/暂停"
-        onClick={onPauseClick}
-      >
+      <a className="rat-controller-item" title="Pause" onClick={onPauseClick}>
         <Icon name={paused ? "play" : "pause"} />
       </a>
 
-      <a className="rat-controller-item" title="回放" onClick={onReplayClick}>
+      <a className="rat-controller-item" title="Replay" onClick={onReplayClick}>
         <Icon name="replay" />
       </a>
       {!showEncodeBtn && (

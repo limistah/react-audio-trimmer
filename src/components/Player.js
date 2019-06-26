@@ -202,7 +202,9 @@ export default class Player extends PureComponent {
   componentDidMount() {
     this.initWebAudio();
   }
-
+  componentWillUnmount() {
+    this.clean();
+  }
   renderTimestamp() {
     const formated = formatSeconds(this.props.currentTime);
 

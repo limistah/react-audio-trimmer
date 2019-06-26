@@ -42,7 +42,6 @@ export default class ReactAudioTrimmer extends Component {
   defaultProps;
 
   handleFileChange = async file => {
-    console.log(file);
     if (!isAudio(file)) {
       return alert("Unsupported File Type");
     }
@@ -51,21 +50,24 @@ export default class ReactAudioTrimmer extends Component {
       file,
       paused: true,
       decoding: true,
-      audioBuffer: null
-    });
-
-    const audioBuffer = await WebAudio.decode(file);
-
-    window.audioBuffer = audioBuffer;
-
-    this.setState({
-      paused: false,
-      decoding: false,
-      audioBuffer,
+      audioBuffer: null,
       startTime: 0,
-      currentTime: 0,
-      endTime: audioBuffer.duration / 2
+      currentTime: 0
     });
+
+    setTimeout(async () => {
+      const audioBuffer = await WebAudio.decode(file);
+
+      window.audioBuffer = audioBuffer;
+      this.setState({
+        paused: false,
+        decoding: false,
+        audioBuffer,
+        startTime: 0,
+        currentTime: 0,
+        endTime: audioBuffer.duration / 2
+      });
+    }, 300);
   };
 
   handleStartTimeChange = time => {
@@ -202,7 +204,7 @@ export default class ReactAudioTrimmer extends Component {
               showEncodeBtn={this.props.showEncodeBtn}
             />
 
-            {isFinite(this.state.endTime) && (
+            {state.audioBuffer && isFinite(this.state.endTime) && (
               <MetaSecondsInfo
                 secondsRange={this.displaySeconds(
                   state.endTime - state.startTime
